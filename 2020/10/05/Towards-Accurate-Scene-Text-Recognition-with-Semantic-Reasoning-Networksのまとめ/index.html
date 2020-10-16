@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networksのまとめ | 愚</title><meta name="keywords" content="加密,OCR"><meta name="author" content="Yang Yuhui"><meta name="copyright" content="Yang Yuhui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="论文总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networksのまとめ">
+<meta property="og:url" content="http://yyh0806.github.io/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/index.html">
+<meta property="og:site_name" content="愚">
+<meta property="og:description" content="论文总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yyh0806.github.io/img/cover/57648299_p0.png">
+<meta property="article:published_time" content="2020-10-05T13:42:01.000Z">
+<meta property="article:modified_time" content="2020-10-06T10:28:50.761Z">
+<meta property="article:author" content="Yang Yuhui">
+<meta property="article:tag" content="加密">
+<meta property="article:tag" content="OCR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yyh0806.github.io/img/cover/57648299_p0.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yyh0806.github.io/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":120,"languages":{"author":"作者: Yang Yuhui","link":"链接: ","source":"来源: 愚","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"I,LOVE,YOU","fontSize":"15px"},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-10-06 19:28:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#towards-accurate-scene-text-recognition-with-semantic-reasoning-networks"><span class="toc-text"> Towards Accurate Scene Text Recognition with Semantic Reasoning Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text"> 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E3%81%99%E3%82%8B%E8%AA%B2%E9%A1%8C"><span class="toc-text"> 解決する課題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E7%AD%96"><span class="toc-text"> 解決策</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E9%A2%98-%E4%B8%80%E6%96%B9%E5%90%91%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%AB%E4%BC%9D%E9%80%81"><span class="toc-text"> 课题: 一方向シリアル伝送</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E8%A7%A3%E6%B1%BA%E7%AD%96-parallel-visual-attention-module"><span class="toc-text"> 1.解決策 Parallel Visual Attention Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E8%A7%A3%E6%B1%BA%E7%AD%96-global-semantic-reasoning-module"><span class="toc-text"> 2.解決策 Global Semantic Reasoning Module</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E9%A2%98-%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-%E3%82%BB%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%83%95%E3%83%A5%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3"><span class="toc-text"> 课题: ビジュアル-セマンティックフュージョン</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E6%9E%9C"><span class="toc-text"> 結果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A2%BA%E5%BA%A6"><span class="toc-text"> 正確度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%82%E9%96%93"><span class="toc-text"> 時間</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89"><span class="toc-text"> GitHubのコード</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unofficial-pytorch-implementation"><span class="toc-text"> Unofficial Pytorch implementation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E7%B5%90%E6%9E%9C"><span class="toc-text"> コードの結果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A0%E7%82%B9"><span class="toc-text"> 欠点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bug"><span class="toc-text"> BUG</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/57648299_p0.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">愚</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networksのまとめ</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-05T13:42:01.000Z" title="发表于 2020-10-05 22:42:01">2020-10-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-06T10:28:50.761Z" title="更新于 2020-10-06 19:28:50">2020-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">816</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="towards-accurate-scene-text-recognition-with-semantic-reasoning-networks"><a class="markdownIt-Anchor" href="#towards-accurate-scene-text-recognition-with-semantic-reasoning-networks"></a> Towards Accurate Scene Text Recognition with Semantic Reasoning Networks</h1>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<blockquote>
+<p>The research of scene text recognition has made significant progress in the past few years. In this section, we will first review some recent text recognition methods, and summarize them into two categories: semantic context-free and semantic context-aware, according to whether semantic information is used.</p>
+</blockquote>
+<p>セマンティック情報が使用されているかどうかに応じて、セマンティックコンテキストフリーとセマンティックコンテキスト認識の2つのカテゴリに分類します。</p>
+<img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006102349002.png" alt="image-20201006102349002" style="zoom: 80%;">
+<blockquote>
+<p>However, these works do not fully exploit semantic context information, which is exactly what we want to focus on in this paper.</p>
+</blockquote>
+<p>しかし、今までの技術がセマンティックコンテキスト情報を十分に利用していない、我々がこの論文を注目したい原因である。</p>
+<h2 id="解決する課題"><a class="markdownIt-Anchor" href="#解決する課題"></a> 解決する課題</h2>
+<ol>
+<li>一方向シリアル伝送(one-way serial transmission)</li>
+<li>ビジュアル-セマンティックフュージョン(Visual-Semantic Fusion)</li>
+</ol>
+<h2 id="解決策"><a class="markdownIt-Anchor" href="#解決策"></a> 解決策</h2>
+<h3 id="课题-一方向シリアル伝送"><a class="markdownIt-Anchor" href="#课题-一方向シリアル伝送"></a> 课题: 一方向シリアル伝送</h3>
+<p>一方向シリアル伝送には二つの欠点がある。</p>
+<ol>
+<li>時間のかかる(time-consuming)</li>
+<li>情報の損失(loses information)</li>
+</ol>
+<h4 id="1解決策-parallel-visual-attention-module"><a class="markdownIt-Anchor" href="#1解決策-parallel-visual-attention-module"></a> 1.解決策 Parallel Visual Attention Module</h4>
+<p>SerialからParallelに変更する。</p>
+<img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006103224249.png" alt="image-20201006103224249" style="zoom:67%;">
+<h4 id="2解決策-global-semantic-reasoning-module"><a class="markdownIt-Anchor" href="#2解決策-global-semantic-reasoning-module"></a> 2.解決策 Global Semantic Reasoning Module</h4>
+<p><strong>Visual-to-semantic embedding block</strong>と<strong>Semantic reasoning block</strong>を通じて、グローバルセマンティック情報(the global semantic information)を推定する</p>
+<img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006190523832.png" alt="image-20201006190523832" style="zoom: 67%;">
+<hr>
+<h3 id="课题-ビジュアル-セマンティックフュージョン"><a class="markdownIt-Anchor" href="#课题-ビジュアル-セマンティックフュージョン"></a> 课题: ビジュアル-セマンティックフュージョン</h3>
+<blockquote>
+<p>As we discussed in the Sec. 1, it is very important to consider both visual aligned features G and semantic information S for scene text recognition. However, G and S belong to different domains, and their weights for the final sequence recognition in different cases should be different.</p>
+</blockquote>
+<p>視覚特徴<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span>とセマンティック情報<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>をシーンテキスト認識において同時に考慮することが重要である。しかし、<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span>と<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>は異なる領域に属し、それらの最終的な重みは異なるはずである。</p>
+<p>全ての関数を組み合わせて、最後の目標関数は以下の通りです。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Loss</mi><mo>⁡</mo><mo>=</mo><msub><mi>α</mi><mi>e</mi></msub><msub><mi>L</mi><mi>e</mi></msub><mo>+</mo><msub><mi>α</mi><mi>r</mi></msub><msub><mi>L</mi><mi>r</mi></msub><mo>+</mo><msub><mi>α</mi><mi>f</mi></msub><msub><mi>L</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">\operatorname{Loss}=\alpha_{e} L_{e}+\alpha_{r} L_{r}+\alpha_{f} L_{f}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mop"><span class="mord mathrm">L</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">s</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>e</mi></msub><mi mathvariant="normal">、</mi><msub><mi>L</mi><mi>r</mi></msub><mi mathvariant="normal">、</mi><msub><mi>L</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">L_e、L_r、L_f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">、</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">、</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>はembedding loss、reasoning loss、decoder loss</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>α</mi><mi>e</mi></msub><mo separator="true">,</mo><msub><mi>α</mi><mi>r</mi></msub><mo separator="true">,</mo><msub><mi>α</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">\alpha_{e},\alpha_{r},\alpha_{f}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>は1、0.15、２</p>
+<h2 id="結果"><a class="markdownIt-Anchor" href="#結果"></a> 結果</h2>
+<h3 id="正確度"><a class="markdownIt-Anchor" href="#正確度"></a> 正確度</h3>
+<p><strong>None lexicon</strong></p>
+<p><strong>90K</strong>: Synth90K	<strong>ST</strong>: SynthText	<strong>word</strong>: word-level	<strong>char</strong>: character-level</p>
+<p><strong>self</strong>: self-designed convolution network or self-made synthetic datasets are used</p>
+<p><strong>SRN w/o GSRN</strong>: SRN cuts down GSRM and thus loses semantic information</p>
+<p><img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006135302580.png" alt="image-20201006135302580"></p>
+<h3 id="時間"><a class="markdownIt-Anchor" href="#時間"></a> 時間</h3>
+<p>average time consumed by a single image</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><menclose notation="top bottom left right"><mtable rowspacing="0.15999999999999992em" columnalign="left left left" columnlines="solid solid" columnspacing="1em" rowlines="solid none none solid none"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> Method </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> IC15 </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>  TRW-L </mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> CTC </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>128.6</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>131.8</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> 1D-Attention </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>323.3</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>431.1</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> 2D-Attention </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>338.8</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>486.9</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> SRN w/o GSRM </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>131.5</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>137.3</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext> SRN </mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>191.6</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>216.8</mn><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mtd></mtr></mtable></menclose></mrow><annotation encoding="application/x-tex">\begin{array}{|l|l|l|}
+\hline \text { Method } &amp;  {\text { IC15 }} &amp; \ {\text { TRW-L }} \\
+\hline \text { CTC } &amp; 128.6 \mathrm{ms} &amp; 131.8 \mathrm{ms} \\
+\text { 1D-Attention } &amp; 323.3 \mathrm{ms} &amp; 431.1 \mathrm{ms} \\
+\text { 2D-Attention } &amp; 338.8 \mathrm{ms} &amp; 486.9 \mathrm{ms} \\
+\hline \text { SRN w/o GSRM } &amp; 131.5 \mathrm{ms} &amp; 137.3 \mathrm{ms} \\
+\text { SRN } &amp; 191.6 \mathrm{ms} &amp; 216.8 \mathrm{ms} \\
+\hline
+\end{array}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:7.250000000000002em;vertical-align:-3.35em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.9000000000000012em;"><span style="top:-5.850000000000001em;"><span class="pstrut" style="height:5.850000000000001em;"></span><span class="mtable"><span class="vertical-separator" style="height:7.200000000000001em;vertical-align:-3.3500000000000005em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.850000000000001em;"><span style="top:-6.010000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> Method </span></span></span></span><span style="top:-4.810000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> CTC </span></span></span></span><span style="top:-3.6100000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> 1D-Attention </span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> 2D-Attention </span></span></span></span><span style="top:-1.2100000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> SRN w/o GSRM </span></span></span></span><span style="top:-0.009999999999999953em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord"> SRN </span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="vertical-separator" style="height:7.200000000000001em;vertical-align:-3.3500000000000005em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.850000000000001em;"><span style="top:-6.010000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord text"><span class="mord"> IC15 </span></span></span></span></span><span style="top:-4.810000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">8</span><span class="mord">.</span><span class="mord">6</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-3.6100000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mord">2</span><span class="mord">3</span><span class="mord">.</span><span class="mord">3</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mord">3</span><span class="mord">8</span><span class="mord">.</span><span class="mord">8</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-1.2100000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">3</span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-0.009999999999999953em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">9</span><span class="mord">1</span><span class="mord">.</span><span class="mord">6</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="vertical-separator" style="height:7.200000000000001em;vertical-align:-3.3500000000000005em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.850000000000001em;"><span style="top:-6.010000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mspace"> </span><span class="mord"><span class="mord text"><span class="mord"> TRW-L </span></span></span></span></span><span style="top:-4.810000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">3</span><span class="mord">1</span><span class="mord">.</span><span class="mord">8</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-3.6100000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord">3</span><span class="mord">1</span><span class="mord">.</span><span class="mord">1</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord">8</span><span class="mord">6</span><span class="mord">.</span><span class="mord">9</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-1.2100000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">3</span><span class="mord">7</span><span class="mord">.</span><span class="mord">3</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span><span style="top:-0.009999999999999953em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">1</span><span class="mord">6</span><span class="mord">.</span><span class="mord">8</span><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.35em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="vertical-separator" style="height:7.200000000000001em;vertical-align:-3.3500000000000005em;"></span></span></span><span style="top:-2.5000000000000013em;"><span class="pstrut" style="height:5.850000000000001em;"></span><span class="hline" style="border-bottom-width:0.05em;"></span></span><span style="top:-4.900000000000002em;"><span class="pstrut" style="height:5.850000000000001em;"></span><span class="hline" style="border-bottom-width:0.05em;"></span></span><span style="top:-8.500000000000004em;"><span class="pstrut" style="height:5.850000000000001em;"></span><span class="hline" style="border-bottom-width:0.05em;"></span></span><span style="top:-9.700000000000003em;"><span class="pstrut" style="height:5.850000000000001em;"></span><span class="hline" style="border-bottom-width:0.05em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.35em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h2 id="githubのコード"><a class="markdownIt-Anchor" href="#githubのコード"></a> GitHubのコード</h2>
+<h3 id="unofficial-pytorch-implementation"><a class="markdownIt-Anchor" href="#unofficial-pytorch-implementation"></a> Unofficial Pytorch implementation</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/chenjun2hao/SRN.pytorch">https://github.com/chenjun2hao/SRN.pytorch</a></p>
+<h3 id="コードの結果"><a class="markdownIt-Anchor" href="#コードの結果"></a> コードの結果</h3>
+<p>論文に書かれている精度は達成できない</p>
+<table>
+<thead>
+<tr>
+<th>IIIT5k_3000</th>
+<th>SVT</th>
+<th>IC03_860</th>
+<th>IC03_867</th>
+<th>IC13_857</th>
+<th>IC13_1015</th>
+<th>IC15_1811</th>
+<th>IC15_2077</th>
+<th>SVTP</th>
+<th>CUTE80</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>84.600</td>
+<td>83.617</td>
+<td>92.907</td>
+<td>92.849</td>
+<td>90.315</td>
+<td>88.177</td>
+<td>71.010</td>
+<td>68.064</td>
+<td>71.008</td>
+<td>68.641</td>
+</tr>
+</tbody>
+</table>
+<p><strong>total_accuracy: 80.597</strong></p>
+<h2 id="欠点"><a class="markdownIt-Anchor" href="#欠点"></a> 欠点</h2>
+<img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006133200640.png" alt="image-20201006133200640" style="zoom:67%;">
+<blockquote>
+<ol>
+<li>SRN cannot insert or remove characters, but only modifies wrong characters. If the visual features are aligned wrongly or some characters are missed, SRN cannot infer the correct characters, such as “snout” and “shining”.</li>
+</ol>
+</blockquote>
+<ol>
+<li>SRNは文字を挿入・削除することができず、誤った文字を修正するだけである。視覚的特徴の配列が誤っていたり、ある文字が抜けていたりすると、SRNは正しい文字を推定することができない。例えば、“snout”と“shining”。</li>
+</ol>
+<blockquote>
+<ol start="2">
+<li>The SRN may not work when both visual and semantic context fail to recognize the image, since the gain of SRN is mainly due to the complementation in visual features and semantic features. When the image suffers from special fonts or low quality and the words in it are rarely appeared in training data, it is difficult for the SRN to get the visual context and semantic dependencies, as the second line in Fig. 7 shows.</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>視覚的コンテキストと意味的コンテキストの両方が画像を認識できない場合、SRNが機能しない可能性があります。画像に特殊なフォントや低品質があり、画像内のテキストがトレーニングデータにほとんど存在されない場合、SRNが視覚的なコンテキストとセマンティックの依存関係を取得することは困難です。</li>
+</ol>
+<h2 id="bug"><a class="markdownIt-Anchor" href="#bug"></a> BUG</h2>
+<img src="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/image-20201006164023908.png" alt="image-20201006164023908" style="zoom:67%;">
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Yang Yuhui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yyh0806.github.io/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/">http://yyh0806.github.io/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yyh0806.github.io" target="_blank">愚</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A0%E5%AF%86/">加密</a><a class="post-meta__tags" href="/tags/OCR/">OCR</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/57648299_p0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/"><img class="prev-cover" src="/img/cover/78289654_p0.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks/"><img class="next-cover" src="/img/cover/57648299_p0.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/09/CRNNのまとめ/" title="CRNNのまとめ"><img class="cover" src="/img/cover/39578544_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-09</div><div class="title">CRNNのまとめ</div></div></a></div><div><a href="/2020/10/07/Robust-Scene-Text-Recognition-with-Automatic-Rectification/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectification"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-07</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectification</div></div></a></div><div><a href="/2020/10/08/Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-08</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ</div></div></a></div><div><a href="/2020/10/05/TextBoxesのまとめ/" title="TextBoxesのまとめ"><img class="cover" src="/img/cover/39578544_p10.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-05</div><div class="title">TextBoxesのまとめ</div></div></a></div><div><a href="/2020/10/07/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisonsのまとめ/" title="What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisonsのまとめ"><img class="cover" src="/img/cover/78289654_p0.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-07</div><div class="title">What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisonsのまとめ</div></div></a></div><div><a href="/2020/09/28/20200928/" title="20200928"><img class="cover" src="/img/cover/39578544_p10.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-28</div><div class="title">20200928</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Yang Yuhui</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'bf09c236216f23f38f8c',
+      clientSecret: 'cb067a4bba31f3f43a3bfd4ba85befa667684f54',
+      repo: 'blog',
+      owner: 'yyh0806',
+      admin: ['yyh0806'],
+      id: 'f3a691adc67a7daefa87131fbf462a47',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="/js/third-party/ClickShowText.js" async="async" mobile="false"></script></div></body></html>

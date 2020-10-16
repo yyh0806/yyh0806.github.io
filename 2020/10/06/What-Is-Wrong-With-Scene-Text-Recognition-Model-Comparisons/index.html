@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons | 愚</title><meta name="keywords" content="OCR,STR,论文"><meta name="author" content="Yang Yuhui"><meta name="copyright" content="Yang Yuhui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="论文学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons">
+<meta property="og:url" content="http://yyh0806.github.io/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/index.html">
+<meta property="og:site_name" content="愚">
+<meta property="og:description" content="论文学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yyh0806.github.io/img/cover/78289654_p0.jpg">
+<meta property="article:published_time" content="2020-10-06T10:41:14.000Z">
+<meta property="article:modified_time" content="2020-10-07T05:11:29.836Z">
+<meta property="article:author" content="Yang Yuhui">
+<meta property="article:tag" content="OCR">
+<meta property="article:tag" content="STR">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yyh0806.github.io/img/cover/78289654_p0.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yyh0806.github.io/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":120,"languages":{"author":"作者: Yang Yuhui","link":"链接: ","source":"来源: 愚","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"I,LOVE,YOU","fontSize":"15px"},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-10-07 14:11:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#what-is-wrong-with-scene-text-recognition-model-comparisons-dataset-and-model-analysis"><span class="toc-text"> What Is Wrong With Scene Text Recognition Model Comparisons? Dataset and Model Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract"><span class="toc-text"> Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-text"> Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataset-matters-in-str"><span class="toc-text"> Dataset Matters in STR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synthetic-datasets-for-training"><span class="toc-text"> Synthetic datasets for training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#real-world-datasets-for-evaluation"><span class="toc-text"> Real-world datasets for evaluation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#str-framework-analysis"><span class="toc-text"> STR Framework Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transformation-stage"><span class="toc-text"> Transformation stage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#feature-extraction-stage"><span class="toc-text"> Feature extraction stage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sequence-modeling-stage"><span class="toc-text"> Sequence modeling stage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prediction-stage"><span class="toc-text"> Prediction stage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#experiment-and-analysis"><span class="toc-text"> Experiment and Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#implementation-detail"><span class="toc-text"> Implementation detail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#str-training-and-model-selection"><span class="toc-text"> STR training and model selection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#evaluation-metrics"><span class="toc-text"> Evaluation metrics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#environment"><span class="toc-text"> Environment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis-on-training-datasets"><span class="toc-text"> Analysis on training datasets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#analysis-of-trade-offs-for-module-combinations"><span class="toc-text"> Analysis of trade-offs for module combinations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#analysis-of-combinations-along-the-trade-off-frontiers"><span class="toc-text"> Analysis of combinations along the trade-off frontiers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#the-most-important-modules-for-speed-and-memory"><span class="toc-text"> The most important modules for speed and memory</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module-analysis"><span class="toc-text"> Module analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qualitative-analysis"><span class="toc-text"> Qualitative analysis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#failure-case-analysis"><span class="toc-text"> Failure case analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#calligraphic-fonts"><span class="toc-text"> Calligraphic fonts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vertical-texts"><span class="toc-text"> Vertical texts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#special-characters"><span class="toc-text"> Special characters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#heavy-occlusions"><span class="toc-text"> Heavy occlusions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#low-resolution"><span class="toc-text"> Low resolution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#label-noise"><span class="toc-text"> Label noise</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-text"> Conclusion</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/78289654_p0.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">愚</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-06T10:41:14.000Z" title="发表于 2020-10-06 19:41:14">2020-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-07T05:11:29.836Z" title="更新于 2020-10-07 14:11:29">2020-10-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="what-is-wrong-with-scene-text-recognition-model-comparisons-dataset-and-model-analysis"><a class="markdownIt-Anchor" href="#what-is-wrong-with-scene-text-recognition-model-comparisons-dataset-and-model-analysis"></a> What Is Wrong With Scene Text Recognition Model Comparisons? Dataset and Model Analysis</h1>
+<h2 id="abstract"><a class="markdownIt-Anchor" href="#abstract"></a> Abstract</h2>
+<p>近年来，人们对场景文本识别(STR)模型提出了许多新的建议。虽然每个人都声称已经突破了该技术的边界，但由于训练和评估数据集的选择不一致，该领域一直缺乏一种全面而公平的比较。本文通过三个主要贡献来解决这一困难。首先，我们检查了训练和评估数据集的不一致性，以及由于不一致性导致的绩效差距。其次，我们引入了一个统一的四阶段STR框架，大多数现有的STR模型都适合这个框架。使用这个框架可以对以前提出的STR模块进行广泛的评估，并发现以前未开发的模块组合。第三，我们分析在训练和评估数据集一致的条件下，在准确性、速度和内存需求方面评估模块对性能的贡献。这样的分析清除了当前比较的障碍，以了解现有模块的性能增益。我们的代码是公开可用的。</p>
+<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
+<p>在自然场景中阅读文本被称为场景文本识别(scene text recognition, STR)，在广泛的工业应用中一直是一项重要的任务。光学字符识别(OCR)系统的成熟度已导致其成功应用清理文件,但大多数传统光学字符识别方法未能被有效STR任务由于不同的文本出现在现实世界中发生的和不完美的条件中捕获这些场景。</p>
+<p>为了应付这些挑战，之前的一些研究提出了多阶段管道(multi-stage pipelines)，每个阶段都是一个解决特定挑战的深度神经网络。例如，Shi等人[24]建议使用递归神经网络来处理给定输入中变化的字符数量，使用连接主义时态分类丢失[6]来识别字符数量。Shi等人[25]提出了一种转换模块，该模块将输入规范化为直文本图像，以减少下游模块处理弯曲文本时的代表负担。</p>
+<p>然而,很难评估以及新提出的模块是否改善了当前的艺术,正如一些论文已经提出了不同的评价和测试环境,很难比较报告数字的表面价值(表1),我们观察到1)训练数据集,2)评估数据偏离在各种方法中,。例如，不同的作品使用IC13数据集的不同子集作为其评估集的一部分，这可能导致超过15%的性能差异。这种差异阻碍了不同模型间绩效的公平比较。</p>
+<p>我们的论文通过以下主要贡献来解决这些类型的问题。首先，我们分析了STR论文中常用的训练和评估数据集。我们的分析揭示了使用STR数据集的不一致及其原因。例如，我们在IC03数据集中发现了7个缺失的例子，在IC13数据集中也发现了158个缺失的例子。我们研究了之前在STR数据集上的一些工作，发现不一致性会导致不可比拟的结果，如表1所示。其次，我们为STR引入了一个统一的框架，它为现有的方法提供了一个共同的视角。具体来说，我们将STR模型分为四个连续的操作阶段:转换(Trans.)、特征提取(Feat.)、序列建模(Seq.)和预测(Pred.)。该框架不仅提供了现有的方法，而且还提供了它们可能的变体，以便对模块方面的贡献进行广泛分析。</p>
+<p><img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006200239320.png" alt="image-20201006200239320"></p>
+<p>表1:现有STR模型在训练和评估设置不一致情况下的表现。这种不一致性妨碍了这些方法之间的公平比较。我们展示了原始论文报告的结果，也展示了我们在统一和一致的设置下重新实现的结果。在最后一行，我们还展示了我们找到的最佳模型，它向最先进的方法展示了竞争性能。MJ, ST, C, and, PRI分别表示MJSynth [11]， SynthText [8]， character - labelled[4,30]和private data[3]。每个基准测试的最高精确度以粗体显示。</p>
+<h2 id="dataset-matters-in-str"><a class="markdownIt-Anchor" href="#dataset-matters-in-str"></a> Dataset Matters in STR</h2>
+<p>在这一部分，我们检查不同的培训和评估数据集使用之前的工作，然后解决他们的差异。通过这种分析，我们强调了每个作品在构建和使用其数据集方面的差异，并调查了在比较不同作品的性能时，不一致所造成的偏差(表1)。数据集不一致所造成的性能差异通过实验进行测量，并在之后进行了讨论。</p>
+<h3 id="synthetic-datasets-for-training"><a class="markdownIt-Anchor" href="#synthetic-datasets-for-training"></a> Synthetic datasets for training</h3>
+<p>在训练STR模型时，标注场景文本图像的代价较大，很难获得足够的标注数据。或者使用真实数据，大多数STR模型使用合成数据集进行训练。我们首先介绍在最近的STR论文中使用的两个最流行的合成数据集</p>
+<p><strong>MJSynth (MJ)</strong>[11]是专为STR设计的一个合成数据集，包含8.9 M字框图像。文字框的生成过程如下:1)字体渲染，2)边框和阴影渲染，3)背景着色，4)字体、边框和背景的合成，5)投影变形，6)与真实世界的图像混合，7)添加噪声。图1a显示了MJSynth的一些示例</p>
+<p><strong>SynthText (ST)</strong>[8]是另一个综合生成的数据集，最初设计用于场景文本检测。图1b显示了如何将单词呈现到场景图像上的示例。虽然SynthText是为场景文本检测而设计的，但是它也被用于STR中，通过裁剪文字框。单词框被裁剪并过滤出非字母数字字符，SynthText有5.5 M的训练数据。</p>
+<p>需要注意的是，之前的研究使用了MJ、ST和或其他来源的不同组合(表1)。这些不一致性让人怀疑这些改进是由于提出的模块的贡献，还是由于更好或更大的训练数据。我们在4.2中的实验描述了训练数据集对最终性能的影响。我们进一步建议在未来的STR研究中明确使用的训练数据集，并使用相同的训练集对模型进行比较。</p>
+<img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006200725987.png" alt="image-20201006200725987" style="zoom:67%;">
+<h3 id="real-world-datasets-for-evaluation"><a class="markdownIt-Anchor" href="#real-world-datasets-for-evaluation"></a> Real-world datasets for evaluation</h3>
+<p>七个真实世界的STR数据集被广泛用于评估一个训练好的STR模型。对于某些基准数据集，在每个之前的工作中可能使用了数据集的不同子集进行评估(表1)。这些子集的差异导致比较不一致。我们通过将数据集分为规则数据集和不规则数据集来引入数据集。根据文本的难度和几何布局，给出了基准数据集是规则数据集还是不规则数据集[25,30,5]的区别。首先，<strong>常规数据集包含水平放置字符的文本图像，这些字符之间有均匀的间隔</strong>。对于STR来说，这些案件相对简单</p>
+<p><strong>IIIT5K-Words (IIIT)</strong>[21]是从谷歌图像搜索中抓取的数据集，包含可能返回文本图像的查询词，如广告牌、招牌、门牌号、房屋铭牌和电影海报。IIIT由2000张培训图像和3000张评估图像组成</p>
+<p><strong>Street View Text(SVT)</strong>[29]包含从谷歌街景收集到的户外街道图像。其中一些图像是嘈杂的，模糊的，或低分辨率的。SVT由257张用于训练的图像和647张用于评估的图像组成</p>
+<p>**ICDAR2003 (IC03)**是为ICDAR2003健壮阅读比赛创建的，用于阅读相机捕获的场景文本。其中训练用图像1156张，评估用图像1110张。忽略所有太短(少于3个字符)或包含非字母数字字符的单词，将1,110个图像减少到867个。然而，研究人员使用了两种不同版本的数据集进行评估:860张图像和867张图像。与867数据集相比，860图像数据集缺少7个字框。遗漏的字框可以在补充资料中找到</p>
+<p>**ICDAR2013 (IC13)**继承了大部分IC03图像，也是为ICDAR2013健壮阅读比赛而创建的。它包含848幅用于训练的图像和1095幅用于评估的图像，其中删除非字母数字字符的单词将得到1015幅图像。同样，研究人员使用了两种不同版本的图像进行评估:857张和1015张。857个图像集是1015个集合的子集，其中小于3个字符的单词将被删除。</p>
+<p>其次，<strong>不规则数据集</strong>通常包含STR的硬角情况，比如<strong>弯曲、任意旋转或扭曲的文本</strong>[25,30,5]</p>
+<p><strong>ICDAR2015 (IC15)</strong>[13]是为ICDAR2015健壮阅读比赛而创建的，包含4,468张用于训练的图像和2,077张用于评估的图像。这些图像由谷歌眼镜在佩戴者的自然运动下捕捉。因此，许多图像是有噪声的，模糊的，旋转的，还有一些分辨率也很低。同样，研究人员使用了两种不同版本的图像进行评估:1811张和2077张。之前的论文[4,2]只使用了1811张图像，丢弃了非字母数字字符图像和一些极度旋转、透视移位和弯曲的图像进行评估。一些被丢弃的字框可以在补充材料中找到</p>
+<p><strong>SVT Perspective (SP)</strong> SVT视角(SP)[22]从谷歌街景中采集，包含645张图像进行评估。由于普遍的非正面观点，许多图像包含透视投影</p>
+<p>**CUTE80 (CT)**是从自然场景中采集的，包含288张裁剪过的图像用于评估。其中许多是弯曲文本图像。</p>
+<p>注意，表1向我们提供了一个关键问题，即以前的工作是在不同的基准数据集上评估他们的模型的。具体来说，评估是在IC03、IC13和IC15的不同版本基准上进行的。在IC03中，7个示例会导致0.8%的性能差距，这在与之前的性能比较时是一个巨大的差距。在IC13和IC15的例子中，示例数的差距比IC03还要大。</p>
+<p><img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006205233005.png" alt="image-20201006205233005"></p>
+<p>图3: 一个可视化的场景文本识别流程示例。我们将模型分解为四个阶段。</p>
+<h2 id="str-framework-analysis"><a class="markdownIt-Anchor" href="#str-framework-analysis"></a> STR Framework Analysis</h2>
+<p>本节的目标是介绍场景文本识别(STR)框架，该框架由四个阶段组成，源于各自独立提出的共性STR的模型。然后，对每个阶段的模块选项进行了描述。</p>
+<p>由于STR与计算机视觉任务(如对象检测)和序列预测任务的相似性，STR从高性能卷积神经网络(CNNs)和递归神经网络(RNNs)中受益。第一次将CNN和RNN结合在STR上，卷积-递归神经网络[24]从输入文本图像中提取CNN的特征，并将其重组成RNN进行鲁棒序列预测。CRNN之后，提出了多种变体[25,16,18,17,28,4,3]来提高性能。例如，对于任意文本几何图形的校正，已经提出了转换模块来对文本图像进行规格化[25,18,17]。对于具有高内在维数和潜在因素(如字体风格和杂乱的背景)的复杂文本图像，采用了改进的CNN特征提取器[16,28,4]。此外，随着人们越来越关注推理时间，一些方法甚至省略了RNN阶段[3]。为了改进字符序列的预测，提出了基于注意力的解码器[16,25]</p>
+<p>根据现有STR模型推导出的四个阶段如下:</p>
+<ol>
+<li>**转换(Trans.)**使用空间转换网络(STN[12])对输入文本图像进行规范化处理，以简化后续步骤。</li>
+<li>**特征提取(Feat.)**将输入图像映射到专注于与字符识别相关的属性的表示中，同时抑制不相关的特征，如字体、颜色、大小和背景。</li>
+<li>**序列建模(Seq.)**捕捉下一阶段字符序列中的上下文信息，以更可靠地预测每个字符，而不是独立地进行。</li>
+<li>**预测(Pred)**估计输出字符序列从识别特征的图像。</li>
+</ol>
+<p>我们提供图3作为概述，我们在本文中使用的所有架构都可以在补充材料中找到。</p>
+<h3 id="transformation-stage"><a class="markdownIt-Anchor" href="#transformation-stage"></a> Transformation stage</h3>
+<p>这一阶段的模块将输入图像X转换为归一化图像X。自然场景中的文本图像有不同的形状，如弯曲和倾斜文本所示。如果这样的输入图像不被改变，接下来的特征提取阶段需要学习关于这样的几何形状的不变表示。为了减轻这一负担，空间变换网络(STN)[12]的变体薄板样条(thin-plate spline, TPS)变换被灵活地应用于文本行的不同纵横比[25,18]。TPS在一组基准点之间采用光滑的样条插值。更准确地说，TPS在上下包膜点处找到多个基准点(图3中的绿色+标记)，并将字符区域归一化为预定义的矩形。我们的框架允许TPS的选择或取消选择。</p>
+<h3 id="feature-extraction-stage"><a class="markdownIt-Anchor" href="#feature-extraction-stage"></a> Feature extraction stage</h3>
+<p>在这一阶段，CNN对输入图像(即X或X)进行抽象，输出视觉特征图$$V=\left{v_{i}\right}, i=1, \ldots, I$$ I(I为feature map中的列数)。特征提取器得到的特征图中的每一列沿输入图像的水平线具有相应的可识别的接受域。这些特征被用来估计每个接受域上的字符。我们研究了之前用作STR特征提取器的VGG[26]、RCNN[16]和ResNet[10]三种架构，VGG最初由多个卷积层和几个全连接层[26]组成。RCNN是CNN的一种变体，可以递归应用，根据字符形状调整其接受域[16,28]。ResNet是一个具有residual connections的CNN，可以减轻对相对较深的CNN的训练。</p>
+<h3 id="sequence-modeling-stage"><a class="markdownIt-Anchor" href="#sequence-modeling-stage"></a> Sequence modeling stage</h3>
+<p>从Feat中提取的特征。阶段被重塑为一系列特征V。即使用feature map vi V中的每一列作为序列的一个框架。然而，这个序列可能会缺少上下文信息。因此，在之前的一些工作中，利用双向LSTM (BiLSTM)在特征提取阶段后，做出了更好的序列H = Seq.(V)[24,25,4]。另一方面，Rosetta[3]删除了BiLSTM以降低计算复杂度和内存消耗。我们的框架允许对BiLSTM进行选择。</p>
+<h3 id="prediction-stage"><a class="markdownIt-Anchor" href="#prediction-stage"></a> Prediction stage</h3>
+<p>在这个阶段，从输入H，模块预测一个字符序列，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext> (i.e., </mtext><mrow><mi>Y</mi><mo>=</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>y</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text { (i.e., } \left.Y=y_{1}, y_{2}, \ldots\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord"> (i.e., </span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen nulldelimiter"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>。通过总结前人的工作，我们有两种预测方法:(1)Connectionist temporal classification(CTC)[6]和(2)attention-based sequence prediction(Attn)[25,4]。CTC允许预测一个序列的非固定数目，即使给定了固定数目的特征。CTC的关键方法是预测每列中的一个字符(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">(</mo><msub><mi>h</mi><mi>i</mi></msub><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">\left(h_{i} \in H\right.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose nulldelimiter"></span></span></span></span></span>)，并通过删除重复字符和空白将完整的字符序列修改为一个非固定的字符流[6,24]。另一方面，Attn自动捕获输入序列内的信息流，以预测输出序列[1]。它使STR模型能够学习表示输出类依赖关系的字符级语言模型。</p>
+<h2 id="experiment-and-analysis"><a class="markdownIt-Anchor" href="#experiment-and-analysis"></a> Experiment and Analysis</h2>
+<p>本节将对3中的四阶段框架中所有可能的STR模块组合(2x3x2x2=24)进行评估和分析，所有评估都是列出的数据集构建的通用训练和评估数据集下进行的。</p>
+<h3 id="implementation-detail"><a class="markdownIt-Anchor" href="#implementation-detail"></a> Implementation detail</h3>
+<h4 id="str-training-and-model-selection"><a class="markdownIt-Anchor" href="#str-training-and-model-selection"></a> STR training and model selection</h4>
+<p>如我们在2中所述，训练和评估数据集对STR模型的测量性能有显著影响。为了进行公平的比较，我们固定了训练、验证和评估数据集的选择。我们使用MJSynth 8.9 M和SynthText 5.5 M(共14.4 M)的并集作为我们的训练数据。我们采用AdaDelta[31]优化器，它的衰减率设置为:lcr = 0.95。训练批size为192，迭代次数为300k。梯度剪裁在 magnitude 5使用。所有参数都用方法[9]初始化。我们使用的训练集IC13 IC15, IIIT,和SVT的验证数据,并验证模型在每2000训练步骤选择模型精度最高的在这集。注意,验证集不包含IC03列车数据,因为他们中的一些人被复制在IC13的评估数据集。重复场景图像共计34张，包含215个单词框。在补充材料中可以找到重复的例子。</p>
+<h4 id="evaluation-metrics"><a class="markdownIt-Anchor" href="#evaluation-metrics"></a> Evaluation metrics</h4>
+<p>在本文中，我们提供了一个全面的分析，STR组合在准确性，时间，和内存方面。为了提高准确性，我们测量了9个真实评估数据集(包括基准的所有子集)上每幅图像的单词预测成功率，以及一个统一的评估数据集(总共8,539幅图像);IIIT有3000人，SVT有647人，IC03有867人，IC13有1015人，IC15有2077人，SP有645人，CT有288人。我们只计算字母和数字。对于每个STR组合，我们用不同的初始化随机种子进行了5次试验，并计算了它们的平均准确率。对于速度评估，我们测量在相同的计算环境下识别给定文本的每幅图像的平均时钟时间(以毫秒为单位)，详细如下。对于内存评估，我们计算整个STR管道中可训练浮点参数的数量。</p>
+<h4 id="environment"><a class="markdownIt-Anchor" href="#environment"></a> Environment</h4>
+<p>为了进行合理的速度比较，我们所有的评估都是在相同的环境下进行的:Intel Xeon® E5-2630 v4 2.20GHz CPU, NVIDIA TESLA P40 GPU和252GB内存。所有实验均在NAVER智能机器学习(NSML)平台[15]上完成。</p>
+<h3 id="analysis-on-training-datasets"><a class="markdownIt-Anchor" href="#analysis-on-training-datasets"></a> Analysis on training datasets</h3>
+<p>我们研究了使用不同组的训练数据集对基准性能的影响。正如我们在2.1中提到的，之前的研究使用了不同的训练数据集，并对其模型对改进的贡献留下了不确定性。为了解决这个问题，我们检查了4.3中使用不同训练数据集设置的最佳模型的准确性。仅使用MJSynth的总准确率为80.0%，仅使用SynthText的总准确率为75.6%，同时使用两者的总准确率为84.1%。MJSynth和SynthText的组合比单独使用MJSynth和SynthText提高了4.1%以上的准确率。本研究的一个教训是，使用不同的训练数据集的性能结果是不可比较的，这种比较不能证明模型的贡献，所以我们使用相同的训练数据集来训练所有的模型，除非另有说明。</p>
+<p>有趣的是，使用20%的MJSynth (1.8M)和20%的SynthText (1.1M)进行训练(总共是SynthText的一半2.9M)，比单独使用MJSynth或SynthText的性能提高81.3%。MJSynth和SynthText具有不同的属性，因为它们是用不同的选项生成的，比如失真和模糊。结果表明，训练数据的多样性比训练样本的数量更重要，使用不同的训练数据集比简单地得出更多的训练样本集效果更好。</p>
+<h3 id="analysis-of-trade-offs-for-module-combinations"><a class="markdownIt-Anchor" href="#analysis-of-trade-offs-for-module-combinations"></a> Analysis of trade-offs for module combinations</h3>
+<p>在这里，我们关注在不同模块组合中显示的精确速度和精确内存的权衡。我们在补充材料中提供了完整的结果表。所有24种组合的权衡图见图4，包括之前提出的6种STR模型(图4中的星星)。在精度-时间权衡方面，Rosetta和STAR-net在边界上，其他4种先验模型在边界内。就精确度与内存之间的权衡而言，R2AM处于前沿，而之前提出的其他五种模型还处于前沿。沿权衡边界的模块组合按精度的升序进行标记(精确时间从T1到T5，精确内存从P1到P5)。</p>
+<p><img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006215032022.png" alt="image-20201006215032022"></p>
+<p>图4:STR模块组合所表现出的两种权衡。星星表示先前提出的模型，圆形点表示我们的框架评估的新模块组合。红色实线表示在这些组合中发现的权衡边界。每个图下的表描述模块组合及其在权衡边界上的性能。粗体的模块表示那些在它之前直接从组合中改变的模块;这些模块比前一个组合提高了性能，同时最小化了增加的时间或内存成本。</p>
+<img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006215125715.png" alt="image-20201006215125715" style="zoom:67%;">
+<p>图5:根据预测(左)和特征提取(右)模块对图4进行颜色编码。它们分别被认为是速度和内存最重要的因素</p>
+<h4 id="analysis-of-combinations-along-the-trade-off-frontiers"><a class="markdownIt-Anchor" href="#analysis-of-combinations-along-the-trade-off-frontiers"></a> Analysis of combinations along the trade-off frontiers</h4>
+<p>如表4a所示，T1不包含任何转换或顺序模块，所花费的时间最小。从T1转到T5，依次介绍以下模块(用粗体表示):ResNet、BiLSTM、TPS和Attn。请注意，从T1到T5，每次只改变一个模块。我们的框架提供了平滑的方法转换，根据应用程序场景提供了最少的性能权衡。它们依次增加了整个STR模型的复杂性，从而以计算效率为代价提高了性能。ResNet、BiLSTM和TPS引入了相对温和的整体慢速(1.3ms–&gt;10.9ms)，同时极大地提高了精度(69.5%–&gt;82.9%)。另一方面，最后的改变Attn只提高了1.1%的准确率，但却耗费了巨大的效率(27.6 ms)。</p>
+<p>至于表4b中所示的精确-内存权衡，P1是内存消耗最少的模型，从P1到P5会在内存和准确性之间进行权衡。在精确度和速度的权衡中，我们观察到从6到P5的每一步都有一个模块的变化，变化的模块是:Attn, TPS, BiLSTM和ResNet。它们以内存为代价依次提高了准确性。与T1中使用的VGG相比，我们观察到P1-P4中的RCNN更轻，并且在精确度和内存上进行了良好的权衡。RCNN需要少量重复应用的独特CNN层。我们观察到，转换、顺序和预测模块对内存消耗没有显著的贡献(190万个720万个参数)。虽然总体上是轻量级的，这些模块提供了精度的提高(75.4%–&gt;82.3%)。另一方面，ResNet的最后一个改变，将精度提高了1.7%，代价是将内存消耗从720万增加到4960万浮点参数。因此，可以保证关注内存消耗的从业者相对自由地选择专门的转换、顺序和预测模块，但是应该避免使用ResNets这样的重特性提取器。</p>
+<h4 id="the-most-important-modules-for-speed-and-memory"><a class="markdownIt-Anchor" href="#the-most-important-modules-for-speed-and-memory"></a> The most important modules for speed and memory</h4>
+<p>我们根据模块选择对图4中的散点图进行颜色编码，从而确定了模块对速度和内存的影响。全套用颜色编码的图在补充材料中。在这里，我们展示了速度和内存最关键模块的散点图，分别是预测模块和特征提取模块，如图5所示。</p>
+<p>根据预测和特征模块有明确的组合聚类。在精度和速度的权衡中，我们确定了CTC和Attn集群(Attn的加入显著降低了整个STR模型的速度)。另一方面，为了在准确性和内存之间进行权衡，我们观察到特征提取器对内存的贡献最大。认识到每个标准的最重要的模块是不同的是很重要的，因此，在不同应用场景和约束下的从业者应该根据他们的需要研究不同的模块组合，以获得最佳的权衡。</p>
+<img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201006221510473.png" alt="image-20201006221510473" style="zoom:67%;">
+<p>表2: 四个阶段的模块总精度、推理时间和参数数的研究。采用包含该模的组合结果的均值，即可获得精度。对推理时间和参数个数分别进行测量。</p>
+<h3 id="module-analysis"><a class="markdownIt-Anchor" href="#module-analysis"></a> Module analysis</h3>
+<p>在这里，我们从准确性、速度和内存需求方面研究模块方面的性能。在此分析中，通过平均包括表2中模块的组合来计算各模块的边缘精度。在每个阶段升级模块都需要额外的资源、时间或内存，但可以提高性能。从表中可以看出，在所有阶段中，不规则数据集的性能改进大约是常规基准测试的两倍。当比较精度提高和时间使用时，ResNet、BiLSTM、TPS和Attn序列是从None-VGG-None-CTC的基本组合中最有效的模块升级顺序。这个顺序与精确时间边界(T1—&gt;T5)的组合顺序相同。另一方面，从精确内存的角度来看，RCNN、Attn、TPS、BiLSTM和ResNet是模块最有效的升级顺序，比如精确内存前沿的顺序(P1—&gt;P5)。有趣的是，模块对时间的效率顺序与对内存的效率顺序相反。模块的不同性质在实际应用中提供了不同的选择。此外，模块在两个视角中的排名是相同的，前沿模块的顺序发生了变化，这说明各个模块在所有组合下对性能的贡献是相似的。</p>
+<h4 id="qualitative-analysis"><a class="markdownIt-Anchor" href="#qualitative-analysis"></a> Qualitative analysis</h4>
+<p>每个模块通过解决STR任务的特定困难来识别文本，如3所述。图7显示的示例只有在某些模块被升级时才能被正确识别(例如从VGG升级到ResNet主干)。每行显示了框架每个阶段的模块升级。提供的样品在升级之前是失败的，但是升级之后就可以识别了。TPS转换将曲线文本和透视文本规范化为标准化视图。预测结果显示出戏剧性的改善，特别是在警察圈的品牌标志和航空公司的透视招牌。先进的特征提取器，ResNet，结果在更好的表现能力，改善案例与沉重的背景杂乱YMCA，城市艺术)和看不见的字体(NEUMOS)。BiLSTM通过调整接受域来实现更好的上下文建模;它可以忽略不相关裁剪的字符(I在退出结束时，C在G20结束时)。注意，包括隐式字符级语言建模可以发现缺失或闭塞的字符，例如a in Hard, t in to和S in HOUSE。这些示例提供了实际应用程序中模块的贡献点。</p>
+<p><img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201007085648624.png" alt="image-20201007085648624"></p>
+<p>图6: 我们框架的所有组合上的失败案例示例。</p>
+<img src="/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/image-20201007085728935.png" alt="image-20201007085728935" style="zoom: 80%;">
+<p>图7:没有特定模块的STR组合的挑战性示例。示例中所有没有标注模块的STR组合都无法识别文本，但通过升级模块解决了这个问题。</p>
+<h3 id="failure-case-analysis"><a class="markdownIt-Anchor" href="#failure-case-analysis"></a> Failure case analysis</h3>
+<p>我们调查了所有24种组合的失败案例。由于我们的框架来自于已提出的STR模型之间的共性，并且我们的最佳模型与之前提出的STR模型具有竞争性能，因此所提出的失效案例构成了整个领域的共同挑战。我们希望我们的分析能启发未来的STR工作人员考虑应对这些挑战。</p>
+<p>在基准数据集(2)的8539个例子中，有644幅(7.5%)的图像没有被考虑的24个模型正确识别。我们发现了六种常见的故障案例，如图6所示。以下是对案例挑战的讨论以及对未来研究方向的建议。</p>
+<h4 id="calligraphic-fonts"><a class="markdownIt-Anchor" href="#calligraphic-fonts"></a> Calligraphic fonts</h4>
+<p>品牌的字体样式，如可口可乐，或街道上的商店名称，如咖啡馆，仍然面临挑战。这种不同的字符表达要求一种新的特征提取器提供通用的视觉特征。另一种可能的方法是正则化，因为模型可能会过度拟合训练数据集中的字体样式。</p>
+<h4 id="vertical-texts"><a class="markdownIt-Anchor" href="#vertical-texts"></a> Vertical texts</h4>
+<p>目前的STR模型大多采用水平文本图像，因此在结构上无法处理垂直文本。一些STR模型[30,5]也利用了垂直信息，但是，垂直文本还没有被清楚地涵盖。需要对垂直文本进行进一步研究。</p>
+<h4 id="special-characters"><a class="markdownIt-Anchor" href="#special-characters"></a> Special characters</h4>
+<p>由于目前的基准不评估特殊字符，现有的作品在训练期间将它们排除在外。这导致了失败预测，误导模型将它们视为字母数字字符。我们建议进行特殊的训练。这使得IIIT的准确率从87.9%提高到90.3%。</p>
+<h4 id="heavy-occlusions"><a class="markdownIt-Anchor" href="#heavy-occlusions"></a> Heavy occlusions</h4>
+<p>目前的方法没有广泛地利用上下文信息来克服遮挡。未来的研究可能会考虑更好的语言模型来最大限度地利用语境。</p>
+<h4 id="low-resolution"><a class="markdownIt-Anchor" href="#low-resolution"></a> Low resolution</h4>
+<p>现有的模型没有明确地处理低分辨率的情况;图像金字塔或超分辨率模块可以提高性能。</p>
+<h4 id="label-noise"><a class="markdownIt-Anchor" href="#label-noise"></a> Label noise</h4>
+<p>我们在故障示例中发现了一些有噪声(错误)的标签。我们检查了基准测试中的所有例子，以确定噪声标签的比率。基准数据集均含有噪声标签，不考虑特殊字符的误标率为1.3%，考虑特殊字符的误标率为6.1%，考虑大小写敏感性的误标率为24.1%。</p>
+<p>我们在Github库中提供了所有的失败案例，希望它们能启发我们对STR问题的极端案例进行进一步的研究。</p>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>虽然在新的场景文本识别(STR)模型方面已经取得了很大的进展，但是他们在不一致的基准上进行了比较，导致很难确定所提出的模块是否以及如何改进STR基线模型。这项工作分析了现有的STR模型在之前不一致的实验设置下的贡献。为了实现这一目标，我们在关键STR方法中引入了一个共同的框架，以及一致的数据集:七个基准评估数据集和两个训练数据集(MJ和ST)。我们对比较的关键STR方法进行了公平的比较，并分析了哪些模块的精度、速度和尺寸增益最大。我们还详细分析了组件对典型STR故障的贡献以及其余故障案例。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Yang Yuhui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yyh0806.github.io/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/">http://yyh0806.github.io/2020/10/06/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yyh0806.github.io" target="_blank">愚</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OCR/">OCR</a><a class="post-meta__tags" href="/tags/STR/">STR</a><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/78289654_p0.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/07/What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisons%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/"><img class="prev-cover" src="/img/cover/78289654_p0.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">What-Is-Wrong-With-Scene-Text-Recognition-Model-Comparisonsのまとめ</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81/"><img class="next-cover" src="/img/cover/57648299_p0.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networksのまとめ</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/07/Robust-Scene-Text-Recognition-with-Automatic-Rectification/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectification"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-07</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectification</div></div></a></div><div><a href="/2020/10/05/Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks/" title="Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks"><img class="cover" src="/img/cover/57648299_p0.png"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-05</div><div class="title">Towards-Accurate-Scene-Text-Recognition-with-Semantic-Reasoning-Networks</div></div></a></div><div><a href="/2020/10/09/CRNNのまとめ/" title="CRNNのまとめ"><img class="cover" src="/img/cover/39578544_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-09</div><div class="title">CRNNのまとめ</div></div></a></div><div><a href="/2020/10/08/Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-08</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ</div></div></a></div><div><a href="/2020/10/05/TextBoxes/" title="TextBoxes++"><img class="cover" src="/img/cover/81313730_p0.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-05</div><div class="title">TextBoxes++</div></div></a></div><div><a href="/2020/10/05/TextBoxesのまとめ/" title="TextBoxesのまとめ"><img class="cover" src="/img/cover/39578544_p10.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-05</div><div class="title">TextBoxesのまとめ</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Yang Yuhui</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'bf09c236216f23f38f8c',
+      clientSecret: 'cb067a4bba31f3f43a3bfd4ba85befa667684f54',
+      repo: 'blog',
+      owner: 'yyh0806',
+      admin: ['yyh0806'],
+      id: '1cb903e70d6cb443772af1657ac5b1d4',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="/js/third-party/ClickShowText.js" async="async" mobile="false"></script></div></body></html>

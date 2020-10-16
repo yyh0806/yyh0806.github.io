@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>20200928 | 愚</title><meta name="keywords" content="GAN,加密"><meta name="author" content="Yang Yuhui"><meta name="copyright" content="Yang Yuhui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="GANomaly的测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20200928">
+<meta property="og:url" content="http://yyh0806.github.io/2020/09/28/20200928/index.html">
+<meta property="og:site_name" content="愚">
+<meta property="og:description" content="GANomaly的测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yyh0806.github.io/img/cover/39578544_p10.jpg">
+<meta property="article:published_time" content="2020-09-27T23:49:27.000Z">
+<meta property="article:modified_time" content="2020-10-05T07:24:05.959Z">
+<meta property="article:author" content="Yang Yuhui">
+<meta property="article:tag" content="GAN">
+<meta property="article:tag" content="加密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yyh0806.github.io/img/cover/39578544_p10.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yyh0806.github.io/2020/09/28/20200928/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":120,"languages":{"author":"作者: Yang Yuhui","link":"链接: ","source":"来源: 愚","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"I,LOVE,YOU","fontSize":"15px"},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-10-05 16:24:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95ganomaly"><span class="toc-text"> 测试GANomaly</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text"> 目标</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/cover/39578544_p10.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">愚</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">20200928</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-27T23:49:27.000Z" title="发表于 2020-09-28 08:49:27">2020-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-05T07:24:05.959Z" title="更新于 2020-10-05 16:24:05">2020-10-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">184</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="测试ganomaly"><a class="markdownIt-Anchor" href="#测试ganomaly"></a> 测试GANomaly</h1>
+<h2 id="目标"><a class="markdownIt-Anchor" href="#目标"></a> 目标</h2>
+<p>用syaft数据集进行测试，因为washer的数据太少很容易达到1。</p>
+<p>为了使用syaft，删除IMAGE_SIZE。使用IMAGE_RESIZE_HEIGHT和IMAGE_RESIZE_WIDTH生成模型。</p>
+<p>删除IS_USE_SSIM，使用CON_LOSS_PATTERN</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#0 l1 loss</span></span><br><span class="line"><span class="comment">#1 ssim loss</span></span><br><span class="line"><span class="comment">#2 l1 loss + ssim loss</span></span><br><span class="line">_C.GANOMALY.CON_LOSS_PATTERN = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>修改model，原本的模型不支持长宽不一致的输入。</p>
+<p>对三个参数进行测试，看看对生成结果的影响。</p>
+<ol>
+<li>图像大小 64x128/ <strong>128x256</strong> / 256x512</li>
+<li>con_loss  <strong>L1 loss</strong> /  SSIM loss / L1 loss + SSIM loss</li>
+<li>NZ 10 / <strong>100</strong> / 500 /</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>画像サイズ</td>
+<td>64x128</td>
+<td><strong>128x256</strong></td>
+<td>256x512</td>
+</tr>
+<tr>
+<td>con_loss</td>
+<td>SSIM loss</td>
+<td><strong>L1 loss</strong></td>
+<td>L1 loss + SSIM loss</td>
+</tr>
+<tr>
+<td>NZ</td>
+<td>10</td>
+<td><strong>100</strong></td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+<p>太字はデフォルト値</p>
+<table>
+<thead>
+<tr>
+<th>画像サイズ</th>
+<th>AUC</th>
+<th><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></th>
+<th><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></th>
+<th><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></th>
+<th><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64x128</td>
+<td>0.9354</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601384833516.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601384843314.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601384855259.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601384864825.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>128x256</td>
+<td>0.8941</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601384972347.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601384982501.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601384992500.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385004143.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>256x512</td>
+<td>0.8062</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601385083143.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601385091148.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601385108634.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385118635.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td><strong>con_loss</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>L1 loss</td>
+<td>0.8941</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601384972347.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601384982501.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601384992500.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385004143.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>SSIM loss</td>
+<td>0.8710</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601385380963.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601385391226.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601385399244.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385408734.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>L1 loss + SSIM loss</td>
+<td>0.9250</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601385480228.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601385488739.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601385496417.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385509027.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td><strong>NZ</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.7021</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601385579309.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601385587007.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601385595677.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385604560.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.8941</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601384972347.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601384982501.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601384992500.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385004143.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+<tr>
+<td>500</td>
+<td>0.8792</td>
+<td><img src="/2020/09/28/20200928/190514_114237_0000000001_2_&Cam1Img-1601385714532.bmp" alt="190514_114237_0000000001_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190510_145111_0000000100_2_&Cam1Img-1601385723103.bmp" alt="190510_145111_0000000100_2_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190906_114357_0000000013_9_&Cam1Img-1601385731462.bmp" alt="190906_114357_0000000013_9_&Cam1Img" style="zoom:25%;"></td>
+<td><img src="/2020/09/28/20200928/190618_133659_0000000030_1_&Cam1Img-1601385743958.bmp" alt="190618_133659_0000000030_1_&Cam1Img" style="zoom:25%;"></td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Yang Yuhui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yyh0806.github.io/2020/09/28/20200928/">http://yyh0806.github.io/2020/09/28/20200928/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yyh0806.github.io" target="_blank">愚</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GAN/">GAN</a><a class="post-meta__tags" href="/tags/%E5%8A%A0%E5%AF%86/">加密</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/39578544_p10.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/29/Explainable-Deep-One-Class-Classification/"><img class="prev-cover" src="/img/cover/fcdd_explanations_mvtec.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Explainable-Deep-One-Class-Classification</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/26/Severstal-Steel-Defect-Detection/"><img class="next-cover" src="/img/cover/SteelDefectDetection.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Severstal-Steel-Defect-Detection WIP</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/01/20201001/" title="ヒートマップについて"><img class="cover" src="/img/cover/39578544_p10.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-01</div><div class="title">ヒートマップについて</div></div></a></div><div><a href="/2020/09/25/GANomaly/" title="GANomaly"><img class="cover" src="/img/cover/39578544_p9.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="title">GANomaly</div></div></a></div><div><a href="/2020/10/09/CRNNのまとめ/" title="CRNNのまとめ"><img class="cover" src="/img/cover/39578544_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-09</div><div class="title">CRNNのまとめ</div></div></a></div><div><a href="/2020/10/07/Robust-Scene-Text-Recognition-with-Automatic-Rectification/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectification"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-07</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectification</div></div></a></div><div><a href="/2020/10/08/Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ/" title="Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ"><img class="cover" src="/img/cover/67380863_p1.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-08</div><div class="title">Robust-Scene-Text-Recognition-with-Automatic-Rectificationのまとめ</div></div></a></div><div><a href="/2020/10/05/TextBoxesのまとめ/" title="TextBoxesのまとめ"><img class="cover" src="/img/cover/39578544_p10.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-05</div><div class="title">TextBoxesのまとめ</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Yang Yuhui</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'bf09c236216f23f38f8c',
+      clientSecret: 'cb067a4bba31f3f43a3bfd4ba85befa667684f54',
+      repo: 'blog',
+      owner: 'yyh0806',
+      admin: ['yyh0806'],
+      id: 'a6a8b76e12ff538553f58f7c8a896a12',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="/js/third-party/ClickShowText.js" async="async" mobile="false"></script></div></body></html>
