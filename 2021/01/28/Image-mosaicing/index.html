@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Image_mosaicing | 愚</title><meta name="keywords" content="图像"><meta name="author" content="Yang Yuhui"><meta name="copyright" content="Yang Yuhui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="反抗的第一天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image_mosaicing">
+<meta property="og:url" content="http://yyh0806.github.io/2021/01/28/Image-mosaicing/index.html">
+<meta property="og:site_name" content="愚">
+<meta property="og:description" content="反抗的第一天">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yyh0806.github.io/img/cover/67808976_p0.jpg">
+<meta property="article:published_time" content="2021-01-28T10:07:57.000Z">
+<meta property="article:modified_time" content="2021-01-28T10:11:23.273Z">
+<meta property="article:author" content="Yang Yuhui">
+<meta property="article:tag" content="图像">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yyh0806.github.io/img/cover/67808976_p0.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yyh0806.github.io/2021/01/28/Image-mosaicing/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":120,"languages":{"author":"作者: Yang Yuhui","link":"链接: ","source":"来源: 愚","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-28 19:11:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover/67808976_p0.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">愚</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Image_mosaicing</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-28T10:07:57.000Z" title="发表于 2021-01-28 19:07:57">2021-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T10:11:23.273Z" title="更新于 2021-01-28 19:11:23">2021-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">370</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="image-mosaicing"><a class="markdownIt-Anchor" href="#image-mosaicing"></a> Image mosaicing</h1>
+<h2 id="argument"><a class="markdownIt-Anchor" href="#argument"></a> argument</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(</span><br><span class="line"><span class="string">&#x27;--template&#x27;</span>, type=str, default=<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">help=<span class="string">&#x27;the path of template&#x27;</span>)</span><br><span class="line">parser.add_argument(</span><br><span class="line"><span class="string">&#x27;--match_image&#x27;</span>, type=str, default=<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">help=<span class="string">&#x27;the path of image&#x27;</span>)</span><br><span class="line">parser.add_argument(</span><br><span class="line"><span class="string">&#x27;--detector&#x27;</span>, type=str, default=<span class="string">&#x27;superglue&#x27;</span>,</span><br><span class="line">help=<span class="string">&#x27;select detector&#x27;</span>)</span><br><span class="line">parser.add_argument(</span><br><span class="line"><span class="string">&#x27;--matcher&#x27;</span>, type=str, default=<span class="string">&#x27;bf&#x27;</span>,</span><br><span class="line">help=<span class="string">&#x27;select matcher&#x27;</span>)</span><br><span class="line">parser.add_argument(</span><br><span class="line"><span class="string">&#x27;--output&#x27;</span>, type=str, default=<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">help=<span class="string">&#x27;the path of output folder&#x27;</span>)</span><br><span class="line">opt = parser.parse_args()</span><br></pre></td></tr></table></figure>
+<h2 id="load-images"><a class="markdownIt-Anchor" href="#load-images"></a> load images</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(opt.match_image)</span><br><span class="line">img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">template = cv2.imread(opt.template)</span><br><span class="line">template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)</span><br></pre></td></tr></table></figure>
+<h2 id="keypoints-detector"><a class="markdownIt-Anchor" href="#keypoints-detector"></a> keypoints detector</h2>
+<h3 id="orb-oriented-fast-and-rotated-brief"><a class="markdownIt-Anchor" href="#orb-oriented-fast-and-rotated-brief"></a> <a target="_blank" rel="noopener" href="https://docs.opencv.org/4.5.1/d1/d89/tutorial_py_orb.html">ORB (Oriented FAST and Rotated BRIEF)</a></h3>
+<h3 id="sift-scale-invariant-feature-transform"><a class="markdownIt-Anchor" href="#sift-scale-invariant-feature-transform"></a> <a target="_blank" rel="noopener" href="https://docs.opencv.org/4.5.1/d7/d60/classcv_1_1SIFT.html">SIFT (Scale-Invariant Feature Transform)</a></h3>
+<h3 id="briskbinary-robust-invariant-scalable-keypoints"><a class="markdownIt-Anchor" href="#briskbinary-robust-invariant-scalable-keypoints"></a> <a target="_blank" rel="noopener" href="https://docs.opencv.org/4.5.1/de/dbf/classcv_1_1BRISK.html">Brisk(Binary robust invariant scalable keypoints)</a></h3>
+<h3 id="akazeaccelerated-kaze"><a class="markdownIt-Anchor" href="#akazeaccelerated-kaze"></a> <a target="_blank" rel="noopener" href="https://docs.opencv.org/4.5.1/d8/d30/classcv_1_1AKAZE.html">AKAZE(Accelerated-KAZE)</a></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> opt.detector == <span class="string">&quot;akaze&quot;</span>:</span><br><span class="line">    detector = cv2.AKAZE_create()</span><br><span class="line"><span class="keyword">elif</span> opt.detector == <span class="string">&quot;orb&quot;</span>:</span><br><span class="line">    detector = cv2.ORB_create()</span><br><span class="line"><span class="keyword">elif</span> opt.detector == <span class="string">&quot;sift&quot;</span>:</span><br><span class="line">    detector = cv2.SIFT_create()</span><br><span class="line"><span class="keyword">elif</span> opt.detector == <span class="string">&quot;brisk&quot;</span>:</span><br><span class="line">    detector = cv2.BRISK_create()</span><br><span class="line">img_kp, img_des = detector.detectAndCompute(img_gray, <span class="literal">None</span>)</span><br><span class="line">tep_kp, tep_des = detector.detectAndCompute(template_gray, <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="keypoints-matching"><a class="markdownIt-Anchor" href="#keypoints-matching"></a> keypoints matching</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">matcher = cv2.BFMatcher()</span><br><span class="line"><span class="keyword">if</span> opt.matcher <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">if</span> opt.matcher == <span class="string">&quot;bf&quot;</span>:</span><br><span class="line">        matcher = cv2.BFMatcher()</span><br><span class="line">    <span class="keyword">if</span> opt.matcher == <span class="string">&quot;flann&quot;</span>:</span><br><span class="line">        FLANN_INDEX_KDTREE = <span class="number">0</span></span><br><span class="line">        index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=<span class="number">5</span>)</span><br><span class="line">        search_params = dict(checks=<span class="number">50</span>)</span><br><span class="line">        matcher = cv2.FlannBasedMatcher(index_params, search_params)</span><br><span class="line">matches = matcher.knnMatch(img_des, tep_des, k=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="apply-ratio-test"><a class="markdownIt-Anchor" href="#apply-ratio-test"></a> Apply ratio test</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">good_matches = []</span><br><span class="line"><span class="keyword">for</span> m, n <span class="keyword">in</span> matches:</span><br><span class="line">    <span class="keyword">if</span> m.distance &lt; <span class="number">0.75</span> * n.distance:</span><br><span class="line">        good_matches.append([m])</span><br></pre></td></tr></table></figure>
+<h2 id="drawmatchesknn"><a class="markdownIt-Anchor" href="#drawmatchesknn"></a> DrawMatchesKnn</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img_match = cv2.drawMatchesKnn(img, img_kp, template, tep_kp, good_matches,</span><br><span class="line">                               <span class="literal">None</span>, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)</span><br><span class="line">time_end = time.time()</span><br><span class="line">cv2.imwrite(opt.output + <span class="string">&quot;match.jpg&quot;</span>, img_match)</span><br></pre></td></tr></table></figure>
+<h2 id="select-keypoints"><a class="markdownIt-Anchor" href="#select-keypoints"></a> select keypoints</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img_matched_kpts = np.float32(</span><br><span class="line">    [img_kp[m[<span class="number">0</span>].queryIdx].pt <span class="keyword">for</span> m <span class="keyword">in</span> good_matches]).reshape(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">tep_matched_kpts = np.float32(</span><br><span class="line">    [tep_kp[m[<span class="number">0</span>].trainIdx].pt <span class="keyword">for</span> m <span class="keyword">in</span> good_matches]).reshape(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="calculate-homography"><a class="markdownIt-Anchor" href="#calculate-homography"></a> calculate homography</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H, status = cv2.findHomography(img_matched_kpts, tep_matched_kpts, cv2.RANSAC, <span class="number">5.0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="apply-panorama-correction"><a class="markdownIt-Anchor" href="#apply-panorama-correction"></a> Apply panorama correction</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">width = img.shape[<span class="number">1</span>] + template.shape[<span class="number">1</span>]</span><br><span class="line">height = img.shape[<span class="number">0</span>] + template.shape[<span class="number">0</span>]</span><br><span class="line">result = cv2.warpPerspective(img, H, (width, height))</span><br><span class="line">result[<span class="number">0</span>:template.shape[<span class="number">0</span>], <span class="number">0</span>:template.shape[<span class="number">1</span>]] = template</span><br><span class="line">cv2.imwrite(opt.output + <span class="string">&quot;result.jpg&quot;</span>, result)</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Yang Yuhui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yyh0806.github.io/2021/01/28/Image-mosaicing/">http://yyh0806.github.io/2021/01/28/Image-mosaicing/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yyh0806.github.io" target="_blank">愚</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%83%8F/">图像</a></div><div class="post_share"><div class="social-share" data-image="/img/cover/67808976_p0.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/11/30/20201130/"><img class="next-cover" src="/img/cover/83935269_p0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">20201130</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Yang Yuhui</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">我家洗砚池头树，朵朵花开淡墨痕。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#image-mosaicing"><span class="toc-text"> Image mosaicing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#argument"><span class="toc-text"> argument</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#load-images"><span class="toc-text"> load images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keypoints-detector"><span class="toc-text"> keypoints detector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#orb-oriented-fast-and-rotated-brief"><span class="toc-text"> ORB (Oriented FAST and Rotated BRIEF)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sift-scale-invariant-feature-transform"><span class="toc-text"> SIFT (Scale-Invariant Feature Transform)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#briskbinary-robust-invariant-scalable-keypoints"><span class="toc-text"> Brisk(Binary robust invariant scalable keypoints)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#akazeaccelerated-kaze"><span class="toc-text"> AKAZE(Accelerated-KAZE)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keypoints-matching"><span class="toc-text"> keypoints matching</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-ratio-test"><span class="toc-text"> Apply ratio test</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drawmatchesknn"><span class="toc-text"> DrawMatchesKnn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select-keypoints"><span class="toc-text"> select keypoints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#calculate-homography"><span class="toc-text"> calculate homography</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-panorama-correction"><span class="toc-text"> Apply panorama correction</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/28/Image-mosaicing/" title="Image_mosaicing"><img src="/img/cover/67808976_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Image_mosaicing"/></a><div class="content"><a class="title" href="/2021/01/28/Image-mosaicing/" title="Image_mosaicing">Image_mosaicing</a><time datetime="2021-01-28T10:07:57.000Z" title="发表于 2021-01-28 19:07:57">2021-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/30/20201130/" title="20201130"><img src="/img/cover/83935269_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20201130"/></a><div class="content"><a class="title" href="/2020/11/30/20201130/" title="20201130">20201130</a><time datetime="2020-11-30T10:02:22.000Z" title="发表于 2020-11-30 19:02:22">2020-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/13/%E6%B5%93%E6%B7%A1%E8%A1%A5%E6%AD%A3/" title="浓淡补正"><img src="/img/cover/64930225_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浓淡补正"/></a><div class="content"><a class="title" href="/2020/11/13/%E6%B5%93%E6%B7%A1%E8%A1%A5%E6%AD%A3/" title="浓淡补正">浓淡补正</a><time datetime="2020-11-13T01:13:08.000Z" title="发表于 2020-11-13 10:13:08">2020-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/02/TorchScript/" title="TorchScript"><img src="/img/cover/77448668_p0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TorchScript"/></a><div class="content"><a class="title" href="/2020/11/02/TorchScript/" title="TorchScript">TorchScript</a><time datetime="2020-11-02T01:26:59.000Z" title="发表于 2020-11-02 10:26:59">2020-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/29/EfficientNet/" title="EfficientNet"><img src="/img/cover/67189454_p0.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="EfficientNet"/></a><div class="content"><a class="title" href="/2020/10/29/EfficientNet/" title="EfficientNet">EfficientNet</a><time datetime="2020-10-29T01:47:55.000Z" title="发表于 2020-10-29 10:47:55">2020-10-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Yang Yuhui</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: 'bf09c236216f23f38f8c',
+      clientSecret: 'cb067a4bba31f3f43a3bfd4ba85befa667684f54',
+      repo: 'blog',
+      owner: 'yyh0806',
+      admin: ['yyh0806'],
+      id: '90f8513b691acf7d78e9f946bd746056',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="/js/third-party/ClickShowText.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script></div></body></html>
